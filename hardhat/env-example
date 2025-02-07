@@ -1,0 +1,9 @@
+// Get this key from the metamask wallet
+PRIVATE_KEY = "";
+// Get this key from the alchemy project(create project first)
+API_KEY = "";
+// Create a account on Etherscan and get the API key
+ETHERSCAN_API_KEY = "";
+
+// Deployed Smart Contract ID
+// 0x19779553F7b2F083e5c3F1a7Fc2c30327cb88334
