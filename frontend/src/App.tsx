@@ -5,6 +5,8 @@ import background from "./assets/background.svg";
 
 import "./App.css";
 import { ethers } from "ethers";
+import Login from "./components/Login";
+import PaymentForm from "./components/PaymentForm";
 
 function App() {
   // interface Window {
@@ -86,84 +88,15 @@ function App() {
       <div className="absolute bottom-40 right-80 z-10 ">
         <div className="bg-transparent p-6 rounded-lg  w-150">
           {currentAccount ? (
-            <form onSubmit={handleSubmit} className="">
-              <div className="flex align-center justify-center mb-4">
-                {" "}
-                <img
-                  src="coffee-icon-large.png"
-                  className="w-15 h-15 mr-4"
-                ></img>
-                <h2 className="text-5xl flex justify-center items-center font-semibold text-[#EED8BF]  ">
-                  Buy Me A Coffee
-                </h2>
-              </div>
-
-              {/* Name Input */}
-              <div className="mb-4">
-                <label
-                  htmlFor="name"
-                  className="block text-[#EED8BF] font-medium mb-2"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full p-3 text-white border border-gray-300 rounded-md focus:outline-none "
-                  // placeholder="Enter your name"
-                  required
-                />
-              </div>
-
-              {/* Message Input */}
-              <div className="mb-4">
-                <label
-                  htmlFor="message"
-                  className="block  text-[#EED8BF] font-medium mb-2"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="w-full p-3 text-white border border-[#EED8BF] rounded-md focus:outline-none  focus:ring-blue-50"
-                  // placeholder="Enter your message"
-                  required
-                ></textarea>
-              </div>
-
-              {/* Submit Button */}
-              <button
-                type="submit"
-                className="w-full py-3 bg-[#EED8BF] text-black font-semibold rounded-md cursor-pointer focus:outline-none "
-              >
-                Buy A Coffee
-              </button>
-            </form>
+            <PaymentForm
+              name={name}
+              message={message}
+              setName={setName}
+              setMessage={setMessage}
+              handleSubmit={handleSubmit}
+            />
           ) : (
-            <div className="flex flex-col items-center">
-              <h2 className="text-4xl m-4 font-bold text-white">
-                CryptoBrew - DApp
-              </h2>
-              <p className="text-white text-justify my-4">
-                CryptoBrew is a decentralized application (dApp) built using
-                Web3 concepts, enabling users to support creators with simple
-                payments. By using Ethereum smart contracts, CafeBrew allows
-                creators to generate a unique payment link, making it easy for
-                supporters to send secure and transparent microtransactions
-                directly to the creator’s wallet.
-              </p>
-              <button
-                type="button"
-                onClick={() => initializeProvider()}
-                className="w-full py-3 bg-[#EED8BF] text-black font-semibold rounded-md cursor-pointer focus:outline-none "
-              >
-                Connect Your Wallet
-              </button>
-            </div>
+            <Login initializeProvider={initializeProvider} />
           )}
         </div>
       </div>
