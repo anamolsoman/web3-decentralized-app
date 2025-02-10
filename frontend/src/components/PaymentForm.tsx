@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import abi from "../utils/BuyMeACoffee.json";
 import { useParams } from "react-router-dom";
 import { ethers } from "ethers";
