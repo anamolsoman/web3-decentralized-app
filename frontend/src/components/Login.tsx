@@ -1,4 +1,3 @@
-import { useState, useContext } from "react";
 import { ethers } from "ethers";
 import { useNavigate } from "react-router-dom";
 import useStorage from "../hooks/useStorage";
@@ -11,11 +10,11 @@ const Login = () => {
     let signer;
     let provider;
 
-    if (window.ethereum == null) {
+    if ((window as any).ethereum == null) {
       console.log("MetaMask not installed; using read-only defaults");
       provider = ethers.getDefaultProvider();
     } else {
-      provider = new ethers.BrowserProvider(window.ethereum);
+      provider = new ethers.BrowserProvider((window as any).ethereum);
       signer = await provider.getSigner();
       setAddress(signer.address);
 

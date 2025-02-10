@@ -3,7 +3,7 @@ const useStorage = () => {
     return localStorage.getItem("user-address");
   };
 
-  const setAddress = (value) => {
+  const setAddress = (value: string) => {
     return localStorage.setItem("user-address", value);
   };
 

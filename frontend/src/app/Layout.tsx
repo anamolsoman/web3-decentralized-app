@@ -1,6 +1,6 @@
 import background from "../assets/background.svg";
 import "./Layout.css";
-const Layout = ({ children }) => {
+const Layout = ({ children }: any) => {
   return (
     <div>
       {" "}
