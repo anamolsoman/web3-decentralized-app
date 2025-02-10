@@ -1,13 +1,14 @@
-import { useState } from "react";
-
+import GenerateLink from "./components/GenerateLink";
 import "./App.css";
+import Login from "./components/Login";
+import PaymentForm from "./components/PaymentForm";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <>
-  
-  </>;
+  return (
+    <>
+      <Login />
+    </>
+  );
 }
 
 export default App;
