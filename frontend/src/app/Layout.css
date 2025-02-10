@@ -1,0 +1,7 @@
+.layout {
+  background-color: #2e3138;
+}
+.background-image {
+  max-height: 100vh;
+  object-fit: contain;
+}

@@ -1,38 +1,66 @@
-import crypto from "crypto";
-import bs58 from "bs58";
+import React, { useState } from "react";
+import CryptoJS from "crypto-js";
+import useStorage from "../hooks/useStorage";
 
 const GenerateLink = () => {
-  // Function to generate a shortened address using Base58 encoding
-  function shortenAddress(address) {
-    // First, we hash the wallet address (e.g., using SHA-256)
-    const hash = crypto.createHash("sha256").update(address).digest();
+  const [copied, setCopied] = useState(false);
+  const { getAddress } = useStorage();
 
-    // Now we encode the hash using Base58
-    const encodedAddress = bs58.encode(hash);
-    return encodedAddress;
+  // Example values (You can dynamically set the wallet address and secret key)
+  const originalText = getAddress();
+  const secretKey = "your-32-character-long-secret-key"; // Example secret key
+
+  function encryptText(text, secretKey) {
+    return CryptoJS.AES.encrypt(text, secretKey).toString();
   }
 
-  // Function to decode the shortened address back to the original (This is just a demonstration)
-  function decodeShortenedAddress(shortened) {
-    // Decode the Base58 encoded string
-    const decoded = bs58.decode(shortened);
-
-    // Return the decoded hash (not the original address since hashing is one-way)
-    return decoded.toString("hex"); // Return it as a hex string
+  // Decrypt function (not used here but for reference)
+  function decryptText(encryptedText, secretKey) {
+    const bytes = CryptoJS.AES.decrypt(encryptedText, secretKey);
+    return bytes.toString(CryptoJS.enc.Utf8); // Convert bytes to a UTF-8 string
   }
 
-  // Example wallet address (Ethereum address)
-  const walletAddress = "0x5FfF7e56Fc8eA0D047d3EDe6fF6Fb4A9b17B5C3B";
+  // Encrypt the wallet address
+  const encryptedText = encryptText(originalText, secretKey);
 
-  // Shorten the wallet address
-  const shortened = shortenAddress(walletAddress);
-  console.log("Shortened Address:", shortened);
+  // Generate the payment URL with the encrypted address
+  const paymentUrl = `${import.meta.env.VITE_BASE_URL}/payment/${originalText}`;
 
-  // Decode the shortened address (for demonstration purposes)
-  const decoded = decodeShortenedAddress(shortened);
-  console.log("Decoded Address Hash:", decoded);
+  // Function to copy the URL to clipboard
+  const handleCopy = () => {
+    navigator.clipboard.writeText(paymentUrl); // Copy to clipboard
+    setCopied(true); // Set copied state to true
+    setTimeout(() => setCopied(false), 2000); // Reset copied state after 2 seconds
+  };
 
-  return <div>GenerateLink</div>;
+  return (
+    <>
+      {" "}
+      <h2 className="text-2xl font-bold text-center text-[#EED8BF] mb-2">
+        Your Share Link is Generated
+      </h2>
+      <p className="text-center text-[#EED8BF] mb-2">
+        Share this payment link with your users to receive payments.
+      </p>
+      <div className="flex justify-center items-center  p-2 rounded-md">
+        <input
+          type="text"
+          value={paymentUrl}
+          readOnly
+          className="w-full p-2 border border-transparent focus:outline-none rounded-md mr-2 bg-white "
+        />
+        <button
+          onClick={handleCopy}
+          className="px-4 py-2 bg-[#EED8BF] w-30 rounded-md font-semibold cursor-pointer focus:outline-none"
+        >
+          Copy
+        </button>
+      </div>
+      <div className="text-white text-end">
+        {copied ? <p>Copied to clipboard</p> : ""}
+      </div>
+    </>
+  );
 };
 
 export default GenerateLink;

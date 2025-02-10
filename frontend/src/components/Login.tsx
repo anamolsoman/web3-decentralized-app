@@ -1,4 +1,29 @@
-const Login = ({ initializeProvider }) => {
+import { useState, useContext } from "react";
+import { ethers } from "ethers";
+import { useNavigate } from "react-router-dom";
+import useStorage from "../hooks/useStorage";
+
+const Login = () => {
+  const { setAddress } = useStorage();
+  const navigate = useNavigate();
+
+  const initializeProvider = async () => {
+    let signer;
+    let provider;
+
+    if (window.ethereum == null) {
+      console.log("MetaMask not installed; using read-only defaults");
+      provider = ethers.getDefaultProvider();
+    } else {
+      provider = new ethers.BrowserProvider(window.ethereum);
+      signer = await provider.getSigner();
+      setAddress(signer.address);
+
+      navigate("/generate-link");
+
+      console.log(signer);
+    }
+  };
   return (
     <div>
       <div className="flex flex-col items-center">
