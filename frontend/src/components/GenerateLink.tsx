@@ -1,6 +1,6 @@
-import  { useState } from "react";
+import { useState } from "react";
 // import CryptoJS from "crypto-js";
-import useStorage from "../hooks/useStorage";
+import useStorage from "../hooks/useStorage.tsx";
 
 const GenerateLink = () => {
   const [copied, setCopied] = useState(false);
@@ -8,20 +8,20 @@ const GenerateLink = () => {
 
   // Example values (You can dynamically set the wallet address and secret key)
   const originalText = getAddress();
-//   const secretKey = "your-32-character-long-secret-key"; // Example secret key
+  //   const secretKey = "your-32-character-long-secret-key"; // Example secret key
 
-//   function encryptText(text, secretKey) {
-//     return CryptoJS.AES.encrypt(text, secretKey).toString();
-//   }
+  //   function encryptText(text, secretKey) {
+  //     return CryptoJS.AES.encrypt(text, secretKey).toString();
+  //   }
 
   // Decrypt function (not used here but for reference)
-//   function decryptText(encryptedText, secretKey) {
-//     const bytes = CryptoJS.AES.decrypt(encryptedText, secretKey);
-//     return bytes.toString(CryptoJS.enc.Utf8); // Convert bytes to a UTF-8 string
-//   }
+  //   function decryptText(encryptedText, secretKey) {
+  //     const bytes = CryptoJS.AES.decrypt(encryptedText, secretKey);
+  //     return bytes.toString(CryptoJS.enc.Utf8); // Convert bytes to a UTF-8 string
+  //   }
 
   // Encrypt the wallet address
-//   const encryptedText = encryptText(originalText, secretKey);
+  //   const encryptedText = encryptText(originalText, secretKey);
 
   // Generate the payment URL with the encrypted address
   const paymentUrl = `${import.meta.env.VITE_BASE_URL}/payment/${originalText}`;

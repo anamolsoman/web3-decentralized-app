@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import { useNavigate } from "react-router-dom";
-import useStorage from "../hooks/useStorage";
+import useStorage from "../hooks/useStorage.tsx";
 
 const Login = () => {
   const { setAddress } = useStorage();
