@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     element: <PaymentForm />,
   },
   {
-    path: "/thank-you",
+    path: "/thank-you/:id",
     element: <ThankYou />,
   },
 ]);
