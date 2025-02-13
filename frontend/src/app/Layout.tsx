@@ -5,7 +5,7 @@ const Layout = ({ children }: any) => {
     <div>
       {" "}
       <div className="relative min-h-screen layout">
-        <p className="absolute bottom-5 right-5 text-white">
+        {/* <p className="absolute bottom-5 right-5 text-white">
           Developed By{" "}
           <b>
             <u>
@@ -14,9 +14,9 @@ const Layout = ({ children }: any) => {
               </a>
             </u>
           </b>
-        </p>
+        </p> */}
         <img src={background} className="background-image"></img>
-        <div className="absolute bottom-40 right-80 z-10 ">
+        <div className="absolute top-40 right-50 z-10 ">
           <div className="bg-transparent p-6 rounded-lg  w-150">{children}</div>
         </div>
       </div>

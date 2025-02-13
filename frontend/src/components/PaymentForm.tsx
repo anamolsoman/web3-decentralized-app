@@ -69,7 +69,7 @@ const PaymentForm = () => {
           id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="w-full p-3 text-white border border-gray-300 rounded-md focus:outline-none "
+          className="w-full p-2 text-white border border-gray-300 rounded-md focus:outline-none "
           // placeholder="Enter your name"
           required
         />
@@ -87,7 +87,7 @@ const PaymentForm = () => {
           id="message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="w-full p-3 text-white border border-[#EED8BF] rounded-md focus:outline-none  focus:ring-blue-50"
+          className="w-full p-2 text-white border border-[#EED8BF] rounded-md focus:outline-none  focus:ring-blue-50"
           // placeholder="Enter your message"
           required
         ></textarea>

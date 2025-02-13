@@ -1,8 +1,5 @@
-import { useParams } from "react-router-dom";
-
-function ThankYou() {
-  const { id } = useParams(); // Access the 'id' param from the route
-  return <div>Thank you for your payment! ID: {id}</div>;
-}
+const ThankYou = () => {
+  return <div className="text-white text-4xl">Thank You for your coffee</div>;
+};
 
 export default ThankYou;
